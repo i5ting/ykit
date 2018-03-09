@@ -74,7 +74,10 @@ exports.run = (options) => {
     }
 
     if (apis) {
-        apis.forEach((path, mw) => app.use(path, mw));
+        for(let path in apis){
+            let mw = apis[path];
+            app.use(path, mw);
+        }
     }
 
     app.use(favicon(sysPath.join(__dirname, '../../static/imgs/favicon.ico')));
