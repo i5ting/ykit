@@ -46,6 +46,7 @@ exports.run = (options) => {
         proxy = options.x || options.proxy,
         hot = options.hot === 'false' ? false : true,
         middlewares = options.mw || options.middlewares,
+        apis = options.api || options.apis || [],
         isHttps = options.s || options.https,
         mapping = options.mapping || '',
         port = options.p || options.port || 80;
@@ -70,6 +71,10 @@ exports.run = (options) => {
                 pro.middlewares.forEach((mw) => app.use(mw));
             }
         });
+    }
+
+    if (apis) {
+        apis.forEach((path, mw) => app.use(path, mw));
     }
 
     app.use(favicon(sysPath.join(__dirname, '../../static/imgs/favicon.ico')));
