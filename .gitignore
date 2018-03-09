@@ -44,3 +44,5 @@ cache
 
 # Others
 cli-test
+
+package-lock.json
